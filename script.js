@@ -17,4 +17,13 @@ function createGrid(squaresPerSide) {
     }
 }
 
+function changePixelColor(event) {
+    event.target.style.backgroundColor = 'black';
+}
+
 createGrid(16);
+
+pixels = document.querySelectorAll('.pixel');
+pixels.forEach((pixel) => {
+    pixel.addEventListener('mouseover', changePixelColor);
+});
