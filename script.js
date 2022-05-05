@@ -14,7 +14,10 @@ function createGrid(squaresPerSide) {
     const containerSideLength = container.offsetWidth - 2;
 
     const numberOfElements = squaresPerSide * squaresPerSide;
-    const sideLength = containerSideLength / squaresPerSide;
+    const sideLength = Math.floor(containerSideLength / squaresPerSide);
+
+    // It's necessary to adjust the container's width after flooring sideLength
+    container.style.width = `${squaresPerSide * sideLength}px`;
 
     for (let i = 0; i < numberOfElements; i++) {
         const pixel = document.createElement('div');

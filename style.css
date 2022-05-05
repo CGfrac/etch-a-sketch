@@ -12,9 +12,10 @@ body {
 }
 
 #container {
-    height: 960px;
     width: 960px;
+    margin-bottom: 2px;
     margin: 0 auto;
+    padding: 0;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
@@ -23,4 +24,6 @@ body {
 .pixel {
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
 }
