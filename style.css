@@ -5,3 +5,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.pixel {
+    box-sizing: border-box;
+    background-color: black;
+    border: 1px solid white;
+}
