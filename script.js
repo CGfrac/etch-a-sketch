@@ -56,8 +56,9 @@ function updateColor(currentColor) {
 }
 
 function changePixelColor(event) {
-    const element = event.target
-    element.style.backgroundColor = updateColor(getComputedStyle(element).backgroundColor);
+    const element = event.target;
+    const currentColor = getComputedStyle(element).backgroundColor
+    element.style.backgroundColor = updateColor(currentColor);
 }
 
 function promptUser() {
