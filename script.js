@@ -29,8 +29,32 @@ function createGrid(squaresPerSide) {
     setPixelsListeners();
 }
 
+function parseRGB(rgbText){
+    return rgbText.substring(4, rgbText.length - 1).replace(/ /g, '').split(',');
+}
+
+function updateColor(currentColor) {
+    const rgbArray = parseRGB(currentColor);
+
+    for (let i = 0; i < rgbArray.length; i++) {
+        const value = parseInt(rgbArray[i]);
+
+        if (value === 255) {
+            rgbArray[i] = Math.floor(Math.random() * 255) + 1;
+        } else {
+            // Add 10% of black for each hover
+            rgbArray[i] -= Math.floor((255 / 10));
+        }
+    }
+
+    const newColor = `rgb(${rgbArray.join(',')})`;
+
+    return newColor;    
+}
+
 function changePixelColor(event) {
-    event.target.style.backgroundColor = 'black';
+    const element = event.target
+    element.style.backgroundColor = updateColor(getComputedStyle(element).backgroundColor);
 }
 
 function promptUser() {
