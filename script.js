@@ -36,23 +36,26 @@ function parseRGB(rgbText){
     return rgbText.substring(4, rgbText.length - 1).replace(/ /g, '').split(',');
 }
 
+function setRgbValue(value) {
+    value = parseInt(value);
+
+    // Random color on first mouse hover
+    if (value === 255) {
+        return Math.floor(Math.random() * 255) + 1;
+    }
+
+    // 10% darker for each subsequent mouse hover until black
+    return value - Math.floor((255 / 10));
+}
+
 function updateColor(currentColor) {
     const rgbArray = parseRGB(currentColor);
 
-    for (let i = 0; i < rgbArray.length; i++) {
-        const value = parseInt(rgbArray[i]);
+    const newRgbArray = rgbArray.map(setRgbValue);
 
-        if (value === 255) {
-            rgbArray[i] = Math.floor(Math.random() * 255) + 1;
-        } else {
-            // Add 10% of black for each hover
-            rgbArray[i] -= Math.floor((255 / 10));
-        }
-    }
+    const newColor = `rgb(${newRgbArray.join(',')})`;
 
-    const newColor = `rgb(${rgbArray.join(',')})`;
-
-    return newColor;    
+    return newColor;
 }
 
 function changePixelColor(event) {
@@ -75,7 +78,7 @@ function promptUser() {
     } while (isNaN(value) ||
         value < MIN_SQUARES_PER_SIDE ||
         value > MAX_SQUARES_PER_SIDE);
-    
+
     return value;
 }
 
